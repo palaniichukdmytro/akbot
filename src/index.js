@@ -39,7 +39,9 @@ const replyOptions = Markup.inlineKeyboard([
 ]).extra();
 
 // const bot = new Telegraf(process.env.BOT_TOKEN);
-const bot = new Telegraf("1080651531:AAFenMl9ykQPq-OYD1bQ0AygoNep1YAYcrU");
+const bot = new Telegraf("1080651531:AAFenMl9ykQPq-OYD1bQ0AygoNep1YAYcrU", {
+  polling: true,
+});
 // bot.start((ctx) => ctx.reply("Welcome"));
 bot.help((ctx) => ctx.reply("Send me a sticker"));
 // bot.on("sticker", (ctx) => ctx.reply("👍"));
@@ -49,13 +51,13 @@ bot.help((ctx) => ctx.reply("Send me a sticker"));
 bot.start((ctx) => {
   console.log(ctx, "param");
 
-  // ctx.telegram.sendMessage(ctx.chat.id, "Alternative keybaord layout", {
-  //   reply_markup: {
-  //     keyboard: [["🔍 Menu", "⭐️Rate Us"]],
-  //     resize_keyboard: true,
-  //     force_reply: true,
-  //   },
-  // });
+  ctx.telegram.sendMessage(ctx.chat.id, "Alternative keybaord layout", {
+    reply_markup: {
+      keyboard: [["🔍 Menu", "⭐️Rate Us"]],
+      resize_keyboard: true,
+      force_reply: true,
+    },
+  });
 
   // );
 });
@@ -73,8 +75,8 @@ bot.command("buy", ({ replyWithInvoice }) =>
 bot.on("successful_payment", () => console.log("Woohoo"));
 
 const inlineMessageRatingKeyboard = Markup.inlineKeyboard([
-  Markup.callbackButton("👍", "like"),
-  Markup.callbackButton("👎", "dislike"),
+  Markup.callbackButton("👍", "likedd"),
+  Markup.callbackButton("👎", "disliked"),
 ]).extra();
 
 bot.on("message", (ctx) =>
